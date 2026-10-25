@@ -1,1 +1,1 @@
-//
+import './webcam-attendance.js';

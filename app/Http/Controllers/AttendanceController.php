@@ -36,7 +36,7 @@ class AttendanceController extends Controller
             'longitude' => ['nullable', 'numeric'],
         ]);
 
-        $path = $request->file('photo')->store('presensi/snapshots/' . now()->format('Y-m-d'), 'public');
+        $path = $request->file('photo')->store('presensi/snapshots/'.now()->format('Y-m-d'), 'public');
 
         return response()->json([
             'success' => true,
@@ -44,7 +44,7 @@ class AttendanceController extends Controller
             'type' => 'in',
             'timestamp' => now()->format('H:i:s'),
             'date' => now()->format('Y-m-d'),
-            'photo_url' => asset('storage/' . $path),
+            'photo_url' => asset('storage/'.$path),
         ]);
     }
 
@@ -59,7 +59,7 @@ class AttendanceController extends Controller
             'longitude' => ['nullable', 'numeric'],
         ]);
 
-        $path = $request->file('photo')->store('presensi/snapshots/' . now()->format('Y-m-d'), 'public');
+        $path = $request->file('photo')->store('presensi/snapshots/'.now()->format('Y-m-d'), 'public');
 
         return response()->json([
             'success' => true,
@@ -67,7 +67,7 @@ class AttendanceController extends Controller
             'type' => 'out',
             'timestamp' => now()->format('H:i:s'),
             'date' => now()->format('Y-m-d'),
-            'photo_url' => asset('storage/' . $path),
+            'photo_url' => asset('storage/'.$path),
         ]);
     }
 }
