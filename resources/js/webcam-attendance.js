@@ -70,6 +70,7 @@ class WebcamAttendance {
     }
 
     async startCamera() {
+        this.stopCamera();
         this.updateStatus('connecting', 'Menghubungkan Kamera...');
 
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -89,7 +90,7 @@ class WebcamAttendance {
 
             this.stream = await navigator.mediaDevices.getUserMedia(constraints);
             this.video.srcObject = this.stream;
-            
+
             this.video.onloadedmetadata = () => {
                 this.video.play();
                 this.updateStatus('active', 'Kamera Aktif');
@@ -118,7 +119,7 @@ class WebcamAttendance {
     }
 
     captureSnapshot() {
-        if (!this.video || this.video.readyState !== 4) {
+        if (!this.video || this.video.readyState < 2) {
             this.showToast('Kamera belum siap, tunggu sebentar.', 'error');
             return;
         }
@@ -265,13 +266,24 @@ class WebcamAttendance {
             isSuccess ? 'bg-success text-on-success' : 'bg-danger text-on-danger'
         }`;
 
-        toast.innerHTML = `
-            <div class="flex items-center gap-2">
-                <span>${isSuccess ? '✓' : '⚠'}</span>
-                <span>${message}</span>
-            </div>
-            <button class="ml-3 text-white/80 hover:text-white font-bold text-xs" onclick="this.parentElement.remove()">✕</button>
-        `;
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'flex items-center gap-2';
+
+        const iconSpan = document.createElement('span');
+        iconSpan.textContent = isSuccess ? '✓' : '⚠';
+        contentDiv.appendChild(iconSpan);
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = message;
+        contentDiv.appendChild(textSpan);
+
+        toast.appendChild(contentDiv);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'ml-3 text-white/80 hover:text-white font-bold text-xs';
+        closeBtn.textContent = '✕';
+        closeBtn.onclick = () => toast.remove();
+        toast.appendChild(closeBtn);
 
         container.appendChild(toast);
 
@@ -317,9 +329,13 @@ class WebcamAttendance {
     }
 }
 
-// Auto-instantiate when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+// Safe instantiation regardless of document readyState (handles deferred module scripts)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.webcamAttendance = new WebcamAttendance();
+    });
+} else {
     window.webcamAttendance = new WebcamAttendance();
-});
+}
 
 export default WebcamAttendance;

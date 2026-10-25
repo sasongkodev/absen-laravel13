@@ -30,7 +30,7 @@
                 <span>Absensi Wajah</span>
             </h1>
             <div id="camera-status-pill" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-neutral text-on-surface-muted flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-yellow-500" id="camera-indicator"></span>
+                <span class="w-2 h-2 rounded-full bg-warning" id="camera-indicator"></span>
                 <span id="camera-status-text">Menyiapkan Kamera...</span>
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="mt-5 flex flex-col gap-3">
             <!-- Initial State Controls: Capture Photo Button -->
             <div id="controls-capture" class="w-full">
-                <button type="button" id="btn-capture" class="touch-target w-full bg-primary hover:bg-primary-hover active:bg-primary-active text-on-primary rounded-md font-semibold text-sm transition flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                <button type="button" id="btn-capture" class="touch-target w-full bg-primary hover:bg-primary-hover active:bg-primary-active text-on-primary rounded-md font-semibold text-sm transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm8 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
                     <span>Ambil Foto Presensi</span>
                 </button>
@@ -95,11 +95,11 @@
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/></svg>
                     <span>Ulangi</span>
                 </button>
-                <button type="button" id="btn-checkin" class="touch-target sm:col-span-1 bg-primary hover:bg-primary-hover active:bg-primary-active text-on-primary rounded-md font-semibold text-sm transition flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50">
+                <button type="button" id="btn-checkin" class="touch-target sm:col-span-1 bg-primary hover:bg-primary-hover active:bg-primary-active text-on-primary rounded-md font-semibold text-sm transition flex items-center justify-center gap-1.5 disabled:opacity-50">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                     <span>Absen Masuk</span>
                 </button>
-                <button type="button" id="btn-checkout" class="touch-target sm:col-span-1 bg-secondary hover:bg-secondary-hover text-on-secondary rounded-md font-semibold text-sm transition flex items-center justify-center gap-1.5 shadow-sm disabled:opacity-50">
+                <button type="button" id="btn-checkout" class="touch-target sm:col-span-1 bg-secondary hover:bg-secondary-hover text-on-secondary rounded-md font-semibold text-sm transition flex items-center justify-center gap-1.5 disabled:opacity-50">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"/></svg>
                     <span>Absen Pulang</span>
                 </button>

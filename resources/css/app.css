@@ -32,12 +32,21 @@
 
     --color-success: #166534;
     --color-success-subtle: #E8F5EC;
+    --color-on-success: #FFFFFF;
+
     --color-danger: #B91C1C;
+    --color-danger-hover: #991B1B;
     --color-danger-subtle: #FDECEC;
+    --color-on-danger: #FFFFFF;
+
     --color-warning: #92400E;
+    --color-warning-hover: #78350F;
     --color-warning-subtle: #FDF3E3;
+    --color-on-warning: #FFFFFF;
+
     --color-info: #1D4ED8;
     --color-info-subtle: #E9F0FD;
+    --color-on-info: #FFFFFF;
 
     --color-camera-bg: #10201F;
 }

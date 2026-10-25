@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class AttendanceController extends Controller
@@ -30,22 +31,7 @@ class AttendanceController extends Controller
      */
     public function checkIn(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'photo' => ['required', 'image', 'max:5120'], // Max 5MB
-            'latitude' => ['nullable', 'numeric'],
-            'longitude' => ['nullable', 'numeric'],
-        ]);
-
-        $path = $request->file('photo')->store('presensi/snapshots/'.now()->format('Y-m-d'), 'public');
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Absen masuk berhasil dicatat!',
-            'type' => 'in',
-            'timestamp' => now()->format('H:i:s'),
-            'date' => now()->format('Y-m-d'),
-            'photo_url' => asset('storage/'.$path),
-        ]);
+        return $this->processAttendance($request, 'in', 'Absen masuk berhasil dicatat!');
     }
 
     /**
@@ -53,21 +39,30 @@ class AttendanceController extends Controller
      */
     public function checkOut(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'photo' => ['required', 'image', 'max:5120'], // Max 5MB
+        return $this->processAttendance($request, 'out', 'Absen pulang berhasil dicatat!');
+    }
+
+    /**
+     * Shared logic to validate and store attendance photo snapshot.
+     */
+    protected function processAttendance(Request $request, string $type, string $successMessage): JsonResponse
+    {
+        $request->validate([
+            'photo' => ['required', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120'], // Max 5MB
             'latitude' => ['nullable', 'numeric'],
             'longitude' => ['nullable', 'numeric'],
         ]);
 
         $path = $request->file('photo')->store('presensi/snapshots/'.now()->format('Y-m-d'), 'public');
+        $photoUrl = Storage::disk('public')->url($path);
 
         return response()->json([
             'success' => true,
-            'message' => 'Absen pulang berhasil dicatat!',
-            'type' => 'out',
+            'message' => $successMessage,
+            'type' => $type,
             'timestamp' => now()->format('H:i:s'),
             'date' => now()->format('Y-m-d'),
-            'photo_url' => asset('storage/'.$path),
+            'photo_url' => $photoUrl,
         ]);
     }
 }
