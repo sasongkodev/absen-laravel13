@@ -2,8 +2,50 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --color-primary: #0E5C56;
+    --color-primary-hover: #0A4743;
+    --color-primary-active: #06312E;
+    --color-primary-subtle: #E2EFED;
+    --color-on-primary: #FFFFFF;
+
+    --color-secondary: #3E4A49;
+    --color-secondary-hover: #2F3A39;
+    --color-secondary-subtle: #ECEAE6;
+    --color-on-secondary: #FFFFFF;
+
+    --color-tertiary: #9A4E17;
+    --color-tertiary-subtle: #F8EEE6;
+    --color-on-tertiary: #FFFFFF;
+
+    --color-neutral: #F6F4F1;
+    --color-neutral-strong: #E7E3DD;
+
+    --color-surface: #FFFFFF;
+    --color-surface-muted: #FAF9F7;
+    --color-on-surface: #1F2A29;
+    --color-on-surface-muted: #5A6664;
+
+    --color-success: #166534;
+    --color-success-subtle: #E8F5EC;
+    --color-danger: #B91C1C;
+    --color-danger-subtle: #FDECEC;
+    --color-warning: #92400E;
+    --color-warning-subtle: #FDF3E3;
+    --color-info: #1D4ED8;
+    --color-info-subtle: #E9F0FD;
+
+    --color-camera-bg: #10201F;
+}
+
+@utility tabular {
+    font-feature-settings: 'tnum' 1;
+}
+
+@utility touch-target {
+    min-height: 44px;
 }
